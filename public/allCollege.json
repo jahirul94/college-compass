@@ -1,0 +1,57 @@
+[
+    {
+      "collegeImage": "https://i.ibb.co/Pt9WVwh/307273361-489489963192200-5066847492043640681-n.jpg",
+      "collegeName": "Shahjalal Govt College",
+      "collegeRating": 4.5,
+      "admissionDate": "2023-09-01",
+      "numOfResearch": 150,
+      "events": ["Tech Fest", "Cultural Night", "Sports Day"],
+      "sportsFacilities": ["Football Field", "Basketball Court", "Swimming Pool"]
+    },
+    {
+      "collegeImage": "https://lh3.googleusercontent.com/p/AF1QipPnuwgUD6Mo-ySUZvdiYkQpUac2MNt5jD6zDbS9=s1360-w1360-h1020",
+      "collegeName": "Brindaban Govt College",
+      "collegeRating": 4.2,
+      "admissionDate": "2023-08-25",
+      "numOfResearch": 100,
+      "events": ["Science Exhibition", "Literary Festival", "Music Gala"],
+      "sportsFacilities": ["Tennis Courts", "Gymnasium", "Athletics Track"]
+    },
+    {
+      "collegeImage": "https://images.unsplash.com/photo-1650686316214-08c286e866f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZGhha2ElMjBjb2xsZWdlJTJDJTIwZGhha2ElMkMlMjBiYW5nbGFkZXNofGVufDB8fDB8fHww&w=1000&q=80",
+      "collegeName": "Dhaka College",
+      "collegeRating": 4.8,
+      "admissionDate": "2023-08-15",
+      "numOfResearch": 200,
+      "events": ["Annual Symposium", "Debate Championship", "Art Expo"],
+      "sportsFacilities": ["Cricket Ground", "Volleyball Court", "Table Tennis Room"]
+    },
+    {
+      "collegeImage": "https://topinbangladesh.com/wp-content/uploads/2020/09/Sylhet-Govt.-College-1024x433.jpg",
+      "collegeName": "Sylhet Govt College",
+      "collegeRating": 4.6,
+      "admissionDate": "2023-09-05",
+      "numOfResearch": 180,
+      "events": ["Innovation Fair", "Startup Challenge", "Fashion Show"],
+      "sportsFacilities": ["Badminton Court", "Squash Court", "Archery Range"]
+    },
+    {
+      "collegeImage": "https://bgc.edu.bd/wp-content/uploads/2023/01/bgc-1024x682.jpeg",
+      "collegeName": "B baria Govt College",
+      "collegeRating": 4.4,
+      "admissionDate": "2023-08-20",
+      "numOfResearch": 50,
+      "events": ["Sports Carnival", "Fitness Expo", "Dance Competition"],
+      "sportsFacilities": ["Swimming Complex", "Rugby Field", "Hockey Turf"]
+    },
+    {
+      "collegeImage": "https://www.daily-sun.com/assets/news_images/2020/10/04/MC_College_pic_daily-sun.jpg",
+      "collegeName": "MC College",
+      "collegeRating": 4.3,
+      "admissionDate": "2023-08-30",
+      "numOfResearch": 80,
+      "events": ["Artistic Showcase", "Film Festival", "Drama Contest"],
+      "sportsFacilities": ["Yoga Studio", "Indoor Climbing Wall", "Martial Arts Dojo"]
+    }
+  ]
+  
