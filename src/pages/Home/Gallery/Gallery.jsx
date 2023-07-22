@@ -1,4 +1,5 @@
-const OurService = () => {
+
+const Gallery = () => {
     return (
         <div>
             
@@ -6,4 +7,4 @@ const OurService = () => {
     );
 };
 
-export default OurService;
+export default Gallery;

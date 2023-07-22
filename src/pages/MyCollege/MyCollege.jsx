@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
+import './MyCollege.css'
 
 const MyCollege = () => {
     const { user } = useAuth();

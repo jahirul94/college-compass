@@ -19,7 +19,7 @@ const DisplayColleges = () => {
         }
     }
 
-    console.log(colleges);
+    // console.log(colleges);
 
     return (
         <div>
@@ -53,7 +53,7 @@ const DisplayColleges = () => {
                                 </div>
                                 </div>
                                 <div className="mt-2">
-                                    <Link to={``}><button className="w-full btn btn-outline">View Details</button></Link>
+                                    <Link to={`/details/${clg._id}`}><button className="w-full btn btn-outline">View Details</button></Link>
                                 </div>
                             </div>
                         </div>)
