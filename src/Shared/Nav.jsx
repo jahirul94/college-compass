@@ -1,12 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 const Nav = () => {
+    const {user , logOut} = useAuth();
+    const handleLogOut =()=>{
+        logOut()
+        .then(()=>{})
+        .catch(err => console.log(err))
+    }
 
     const navItems = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/colleges">Colleges</NavLink></li>
         <li><NavLink to="/admission">Admission</NavLink></li>
         <li><NavLink to="/myCollege">My College</NavLink></li>
+        {user ? <li><button onClick={handleLogOut}>Log Out</button></li> : <Link to="/login"><button className="mt-2">Login</button></Link> }
     </>
 
     return (
@@ -28,7 +36,7 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to="/login">Login</Link>
+                {user && <img className="w-16 h-16 rounded-3xl" src={user?.photoURL} title={user?.displayName} alt="user photo" />}
             </div>
         </div>
     );

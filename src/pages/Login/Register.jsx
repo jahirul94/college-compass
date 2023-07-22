@@ -18,33 +18,17 @@ const Register = () => {
                 // console.log(user);
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
-                        const saveUser = { name: data.name, email: data.email, role: "regular", image: data.photo }
-                        fetch('https://music-instrument-server-navy.vercel.app/users', {
-                            method: 'POST',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify(saveUser)
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.insertedId) {
-                                    reset();
-                                    Swal.fire({
-                                        position: 'center',
-                                        icon: 'success',
-                                        title: 'User created successfully.',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                    navigate('/');
-                                }
-                            })
-
-
-
+                        reset();
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'User created successfully.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/');
                     })
-                    .catch(err => console.log(err.message))
+                    .catch(err => setError(err.message))
             })
             .catch(err => {
                 setError(err.message)
@@ -85,9 +69,8 @@ const Register = () => {
                             <label className="label">
                                 <span className="font-semibold">Password</span>
                             </label>
-                            <input type="password" {...register("password", { minLength: 6})} placeholder="password" className="input input-bordered" required />
+                            <input type="password" {...register("password", { minLength: 6 })} placeholder="password" className="input input-bordered" required />
                             {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
-                            {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters or Upper</p>}
                         </div>
                         <p className="text-red-600">{error}</p>
                         <p> Already have an Account ? <Link to="/login">Login</Link></p>

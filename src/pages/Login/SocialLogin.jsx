@@ -9,32 +9,17 @@ const SocialLogin = () => {
     const handleLoginWithGoogle = () =>{
         googleSignIn()
         .then(result =>{
-            const loggedInUser = result.user ;
-            const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email , role : "regular" , image : loggedInUser.photoURL}
-            fetch('https://music-instrument-server-navy.vercel.app/users', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(saveUser)
-            })
-                .then(res => res.json())
-                .then(() => {
-                    Swal.fire(
-                        'Done!',
-                        'Your Account Login Successfully.',
-                        'success'
-                    )
-                    navigate("/")
-                })
+            Swal.fire(
+                'Done!',
+                'Your Account Login Successfully.',
+                'success'
+            )
+            navigate("/")
         })
         .catch( err => {
             console.log(err.message);
         })
     }
-
-
-
 
 
     return (
