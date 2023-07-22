@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useCollege from "../../Hooks/useCollege";
 
 const Colleges = () => {
@@ -15,7 +16,7 @@ const Colleges = () => {
                             <p className="text-md font-semibold">Num Of Research: {clg.numOfResearch}</p>
                         </div>
                         <div className="mt-2">
-                            <button className="w-full btn btn-outline">View Details</button>
+                            <Link to={`/details/${clg._id}`}><button className="w-full btn btn-outline">View Details</button></Link>
                         </div>
                     </div>
                 </div>)

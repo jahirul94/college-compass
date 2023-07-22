@@ -19,7 +19,7 @@ const AdmissionForm = () => {
 
     const { register, handleSubmit, reset , formState: { errors } } = useForm();
 
-    const onSubmit = data => {
+    const onSubmit = data => { 
         const formData = new FormData();
         formData.append('image', data.image[0])
         fetch(image_hosting_url, {

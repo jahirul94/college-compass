@@ -6,7 +6,7 @@ const DisplayColleges = () => {
     const [displayColleges, setDisplayColleges] = useState([]);
     const [colleges] = useCollege();
 
-
+ 
     useEffect(() => {
         setDisplayColleges(colleges.slice(0, 3))
     }, [colleges])
@@ -19,7 +19,6 @@ const DisplayColleges = () => {
         }
     }
 
-    // console.log(colleges);
 
     return (
         <div>
