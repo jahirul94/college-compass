@@ -5,22 +5,33 @@ import { useForm } from "react-hook-form";
 const AdmissionForm = () => {
     const [colleges] = useCollege();
     const { id } = useParams();
-    const findCollege = colleges.find(clg => clg._id == id);
-    console.log(findCollege);
-
-
-    // image bb 
+    const findCollege = colleges.find(clg => clg._id === id);
+    const { collegeName , _id } = findCollege ;
+    // image hosting url 
     const image_hosting_token = import.meta.env.VITE_IMAGE_TOKEN;
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`
 
 
-
-
-
-
     const { register, handleSubmit, formState: { errors } } = useForm();
+    
     const onSubmit = data => {
-        console.log(data)
+        const formData = new FormData();
+        formData.append('image', data.image[0])
+        fetch(image_hosting_url, {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(imageRes => {
+            if(imageRes.data.display_url){
+                const imgURL = imageRes.data.display_url ;
+                const { name , subject , email , phone , dateOfBirth , address } = data ;
+                const newApplication = { name  , subject , email , phone , image: imgURL , dateOfBirth , address , collegeName , collegeId : _id }
+                console.log(newApplication);
+            }
+        })
+
+
     };
 
     return (
@@ -54,7 +65,7 @@ const AdmissionForm = () => {
                     </div>
                     <div className="">
                         <p className="text-lg font-semibold mb-2"> Your image : </p>
-                        <input type="file" {...register("photo")} className="file-input file-input-bordered w-full max-w-xs" />
+                        <input type="file" {...register("image")} className="file-input file-input-bordered w-full max-w-xs" />
                     </div>
                 </div>
                 <div className="my-16 flex justify-center">
