@@ -1,10 +1,10 @@
-import Banner from "../Banner/Banner";
+import DisplayColleges from "../DisplayColleges/DisplayColleges";
 import OurService from "../OurService/OurService";
 
 const Home = () => {
     return (
         <div>
-             <Banner></Banner>
+             <DisplayColleges></DisplayColleges>
              
              <OurService></OurService>
         </div>

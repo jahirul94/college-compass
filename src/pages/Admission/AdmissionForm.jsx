@@ -31,7 +31,7 @@ const AdmissionForm = () => {
             if(imageRes.data.display_url){
                 const imgURL = imageRes.data.display_url ;
                 const { name , subject , email , phone , dateOfBirth , address } = data ;
-                const newApplication = { name  , subject , email , phone , image: imgURL , dateOfBirth , address , collegeName:findCollege?.collegeName , collegeId : findCollege?._id }
+                const newApplication = { name  , subject , email , phone , image: imgURL , dateOfBirth , address , collegeName:findCollege?.collegeName , collegeId : findCollege?._id , }
                 axios.post("http://localhost:5000/myCollege" , newApplication)
                 .then(data => {
                     if(data.data.insertedId){
