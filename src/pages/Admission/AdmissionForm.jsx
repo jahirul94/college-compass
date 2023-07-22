@@ -5,15 +5,15 @@ import { useForm } from "react-hook-form";
 const AdmissionForm = () => {
     const [colleges] = useCollege();
     const { id } = useParams();
-    const findCollege = colleges.find(clg => clg._id === id);
-    const { collegeName , _id } = findCollege ;
+    const findCollege = colleges.find(clg => clg._id == id);
+
     // image hosting url 
     const image_hosting_token = import.meta.env.VITE_IMAGE_TOKEN;
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`
 
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    
+
     const onSubmit = data => {
         const formData = new FormData();
         formData.append('image', data.image[0])
@@ -26,11 +26,10 @@ const AdmissionForm = () => {
             if(imageRes.data.display_url){
                 const imgURL = imageRes.data.display_url ;
                 const { name , subject , email , phone , dateOfBirth , address } = data ;
-                const newApplication = { name  , subject , email , phone , image: imgURL , dateOfBirth , address , collegeName , collegeId : _id }
+                const newApplication = { name  , subject , email , phone , image: imgURL , dateOfBirth , address , collegeName:findCollege?.collegeName , collegeId : findCollege?._id }
                 console.log(newApplication);
             }
         })
-
 
     };
 
