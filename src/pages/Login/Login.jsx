@@ -2,10 +2,12 @@ import { useState } from "react";
 import SocialLogin from "./SocialLogin";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const [ error , setError] = useState("")
-    // const {signIn} = useAuth();
+    const {signIn} = useAuth();
     const navigate = useNavigate();
     const { register, handleSubmit  , reset } = useForm();
     const onSubmit = data => {

@@ -3,6 +3,7 @@ import SocialLogin from "./SocialLogin";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Register = () => {
     const { createUser, updateUserProfile } = useAuth();
@@ -52,12 +53,6 @@ const Register = () => {
 
 
 
-
-
-
-
-
-
     return (
 
         <div className="hero min-h-screen bg-base-100">
@@ -95,7 +90,7 @@ const Register = () => {
                             {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters or Upper</p>}
                         </div>
                         <p className="text-red-600">{error}</p>
-                        <p className="text-white"> Already have an Account ? <Link to="/login">Login</Link></p>
+                        <p> Already have an Account ? <Link to="/login">Login</Link></p>
                         <input className="btn btn-primary" type="submit" value="Sign up" />
                     </form>
                     <SocialLogin></SocialLogin>

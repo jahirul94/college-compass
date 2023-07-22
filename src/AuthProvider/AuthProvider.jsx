@@ -1,4 +1,3 @@
-import axios from "axios";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
@@ -43,18 +42,6 @@ const AuthProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setUser(user);
             setLoading(false)
-            if (user) {
-                axios.post('https://music-instrument-server-navy.vercel.app/jwt', { email: user.email })
-                    .then(data => {
-                        localStorage.setItem('access-token', data.data.token)
-                        setLoading(false);
-                    })
-            }
-            else {
-                localStorage.removeItem('access-token')
-            }
-
-
         });
         return () => {
             return unsubscribe();
