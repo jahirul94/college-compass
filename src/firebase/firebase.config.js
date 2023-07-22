@@ -5,14 +5,14 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDk2h2OFYK823ncJgj4CYhrjZ1kSaUxrC8",
-  authDomain: "college-compass-915dd.firebaseapp.com",
-  projectId: "college-compass-915dd",
-  storageBucket: "college-compass-915dd.appspot.com",
-  messagingSenderId: "504425168365",
-  appId: "1:504425168365:web:63abfc71688f3215727be4"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export default app ;
+export default app;
