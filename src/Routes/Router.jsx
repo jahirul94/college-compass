@@ -9,6 +9,8 @@ import Register from "../pages/Login/Register";
 import MyCollege from "../pages/MyCollege/MyCollege";
 import DisplayDetails from "../pages/Home/DisplayColleges/DisplayDetails";
 import PrivateRoutes from "./PrivateRoutes";
+import Error from "../pages/Error/Error";
+import User from "../pages/User/User";
 
 const router = createBrowserRouter([
   {
@@ -46,9 +48,17 @@ const router = createBrowserRouter([
       {
         path :'/details/:id',
         element : <PrivateRoutes><DisplayDetails></DisplayDetails></PrivateRoutes>
+      },
+      {
+        path : '/displayUser',
+        element : <User></User>
       }
     ]
   },
+  {
+    path :"*",
+    element : <Error></Error>
+  }
 ]);
 
 export default router;

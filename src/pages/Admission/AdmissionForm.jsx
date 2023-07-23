@@ -47,7 +47,7 @@ const AdmissionForm = () => {
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Oops...',
-                                    text: 'You Have Already Applied on this College!',
+                                    text: 'You Have Already admitted on a College!',
                                 })
                             }
                         })

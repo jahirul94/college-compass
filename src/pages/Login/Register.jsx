@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Register = () => {
     const { createUser, updateUserProfile } = useAuth();
@@ -15,9 +16,13 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                // console.log(user);
+                console.log(user);
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
+                        const saveUser = { name: data.name , email: data.email , image : data.photo }
+                        axios.post('http://localhost:5000/users' , saveUser)
+                        .then(data => console.log(data.data))
+                        .catch(err => console.log(err))
                         reset();
                         Swal.fire({
                             position: 'center',
