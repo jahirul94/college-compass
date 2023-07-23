@@ -31,8 +31,6 @@ const MyCollege = () => {
 
 
 
-    
-
 // TODO : make reviews /
 
     return (
@@ -50,8 +48,7 @@ const MyCollege = () => {
                             <p className="text-md font-semibold">Ratting : {clg.collegeRating}</p>
                             <p className="text-md font-semibold">Admission Date : {clg.admissionDate}</p>
                             <p className="text-md font-semibold">Write a Review : </p>
-
-                            <form onSubmit={handleSubmit} className="my-4 flex">
+                            <form onSubmit={handleSubmit} className="mt-2 mb-4 flex">
                                 <input type="text" placeholder="Write a Reviews" name="review" className="input input-bordered" required />
                                 <input onMouseEnter={()=>setReview(clg)} type="submit" className="btn btn-outline" value="Send" />
                             </form>

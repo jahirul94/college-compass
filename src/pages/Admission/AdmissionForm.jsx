@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const AdmissionForm = () => {
     const [colleges] = useCollege();
-    const {user} = useAuth();
+    const { user } = useAuth();
     // console.log(user);
     const { id } = useParams();
     const findCollege = colleges.find(clg => clg._id == id);
@@ -17,35 +17,42 @@ const AdmissionForm = () => {
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`
 
 
-    const { register, handleSubmit, reset , formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const onSubmit = data => { 
+    const onSubmit = data => {
         const formData = new FormData();
         formData.append('image', data.image[0])
         fetch(image_hosting_url, {
             method: "POST",
             body: formData
         })
-        .then(res => res.json())
-        .then(imageRes => {
-            if(imageRes.data.display_url){
-                const imgURL = imageRes.data.display_url ;
-                const { name , subject , email , phone , dateOfBirth , address } = data ;
-                const newApplication = { name  , subject , email , phone , image: imgURL , dateOfBirth , address , collegeName:findCollege?.collegeName , collegeId : findCollege?._id , }
-                axios.post("http://localhost:5000/myCollege" , newApplication)
-                .then(data => {
-                    if(data.data.insertedId){
-                        reset();
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Your Application Submitted Successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    }})
-            }
-        })
+            .then(res => res.json())
+            .then(imageRes => {
+                if (imageRes.data.display_url) {
+                    const imgURL = imageRes.data.display_url;
+                    const { name, subject, email, phone, dateOfBirth, address } = data;
+                    const newApplication = { name, subject, email, phone, image: imgURL, dateOfBirth, address, collegeName: findCollege?.collegeName, collegeId: findCollege?._id, }
+                    axios.post("http://localhost:5000/myCollege", newApplication)
+                        .then(data => {
+                            if (data.data.insertedId) {
+                                reset();
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Your Application Submitted Successfully.',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'You Have Already Applied on this College!',
+                                })
+                            }
+                        })
+                }
+            })
 
     };
 
@@ -56,7 +63,7 @@ const AdmissionForm = () => {
                 <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                     <div className="">
                         <p className="text-lg font-semibold mb-2">Candidate Name : </p>
-                        <input type="text" {...register("name")} placeholder="Your name" className="input input-bordered w-full" required/>
+                        <input type="text" {...register("name")} placeholder="Your name" className="input input-bordered w-full" required />
                     </div>
                     <div className="">
                         <p className="text-lg font-semibold mb-2">Subject : </p>
@@ -64,7 +71,7 @@ const AdmissionForm = () => {
                     </div>
                     <div className="">
                         <p className="text-lg font-semibold mb-2">Candidate Email :</p>
-                        <input type="email" {...register("email")} defaultValue={user?.email} placeholder="Your Email" className="input input-bordered w-full" readOnly/>
+                        <input type="email" {...register("email")} defaultValue={user?.email} placeholder="Your Email" className="input input-bordered w-full" readOnly />
                     </div>
                     <div className="">
                         <p className="text-lg font-semibold mb-2">Candidate Phone number : </p>
@@ -80,7 +87,7 @@ const AdmissionForm = () => {
                     </div>
                     <div className="">
                         <p className="text-lg font-semibold mb-2"> Your image : </p>
-                        <input type="file" {...register("image")} className="file-input file-input-bordered w-full max-w-xs"  required/>
+                        <input type="file" {...register("image")} className="file-input file-input-bordered w-full max-w-xs" required />
                     </div>
                 </div>
                 <div className="my-16 flex justify-center">

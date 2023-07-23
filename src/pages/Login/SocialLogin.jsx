@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaGoogle } from 'react-icons/fa';
@@ -6,19 +6,22 @@ import { FaGoogle } from 'react-icons/fa';
 const SocialLogin = () => {
     const { googleSignIn } = useAuth();
     const navigate = useNavigate();
-    const handleLoginWithGoogle = () =>{
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+
+    const handleLoginWithGoogle = () => {
         googleSignIn()
-        .then(result =>{
-            Swal.fire(
-                'Done!',
-                'Your Account Login Successfully.',
-                'success'
-            )
-            navigate("/")
-        })
-        .catch( err => {
-            console.log(err.message);
-        })
+            .then(result => {
+                Swal.fire(
+                    'Done!',
+                    'Your Account Login Successfully.',
+                    'success'
+                )
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
     }
 
 

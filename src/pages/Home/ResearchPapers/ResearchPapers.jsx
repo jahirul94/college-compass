@@ -7,8 +7,7 @@ const ResearchPapers = () => {
         axios.get('dara.json')
             .then(data => setPapers(data.data))
     }, [])
-
-    console.log(papers);
+    
     return (
         <div className="min-h-screen mt-64">
             <div>

@@ -23,14 +23,14 @@ const DisplayColleges = () => {
     return (
         <div>
             <div className="my-4 flex justify-end">
-                <input ref={ref} type="text" name="" id="" placeholder="Search College" className="w-1/3 input input-bordered" />
+                <input ref={ref} type="text" name="" id="" placeholder="Search College" className="input input-bordered sm:w-full lg:w-1/3" />
                 <button onClick={handleSearch} className="btn btn-outline">Search</button>
             </div>
             <div>
                 <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {
                         displayColleges?.map(clg => <div key={clg._id} className="card bg-base-100 shadow-xl">
-                            <figure><img src={clg.collegeImage} alt="College image" className="h-80 w-full" /></figure>
+                            <figure><img src={clg.collegeImage} alt="College image" className="w-full h-80" /></figure>
                             <div className="card-body">
                                 <h2 className="text-2xl font-bold">{clg.collegeName}</h2>
                                 <div>

@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import SocialLogin from "./SocialLogin";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Login = () => {
     const [error, setError] = useState("")
-    const { signIn } = useAuth();
+    const { signIn, resetPass } = useAuth();
+    const ref = useRef();
     const navigate = useNavigate();
     const { register, handleSubmit, reset } = useForm();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+
     const onSubmit = data => {
         signIn(data.email, data.password)
             .then(result => {
@@ -21,13 +25,25 @@ const Login = () => {
                 )
                 setError('')
                 reset();
-                navigate("/")
+                navigate(from, { replace: true })
             })
             .catch(err => {
                 setError(err.message);
             })
     };
 
+    const handleReset = () => {
+        const email = ref.current.value;
+        resetPass(email)
+            .then(data => {
+                Swal.fire(
+                    'Done!',
+                    'Your password Reset link send on Your inbox.please check your inbox!.',
+                    'success'
+                )
+            })
+            .catch(err => console.log(err))
+    }
 
     return (
         <div className="hero min-h-screen bg-base-100">
@@ -55,7 +71,7 @@ const Login = () => {
                     </form>
                     <SocialLogin></SocialLogin>
                     <div className="ms-8 mb-4">
-                        <button onClick={() => window.my_modal_3.showModal()}><p className="text-red-600 underline">Forget Password</p></button>
+                        <button onClick={() => window.my_modal_3.showModal()}><p className="text-red-600 underline mb-2">Forget Password</p></button>
                         <p> New at here ? <Link to="/register">Sign Up </Link></p>
                     </div>
                 </div>
@@ -64,8 +80,8 @@ const Login = () => {
             <dialog id="my_modal_3" className="modal">
                 <form method="dialog" className="modal-box">
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                    <input type="email" name="email" id="" />
-                    <button className="btn btn-outline">Send</button>
+                    <input ref={ref} className="input input-bordered mt-4 w-2/3" type="email" name="email" id="" placeholder="Enter Your Email" />
+                    <button onClick={handleReset} className="btn btn-outline w-1/3">Reset</button>
                 </form>
             </dialog>
             {/* modal end  */}
