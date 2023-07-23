@@ -21,8 +21,9 @@ const MyCollege = () => {
     const handleSubmit = event => {
         event.preventDefault();
         const data = event.target.review.value;
+        const date = new Date();
         const { email , displayName , photoURL } = user ;
-        const newReview = {message: data , collegeId: review._id , collegeName : review.collegeName , email , displayName , photoURL}
+        const newReview = {message: data , collegeId: review._id , collegeName : review.collegeName , email , displayName , photoURL , date}
         axios.post('http://localhost:5000/reviews' , newReview)
         .then(data => console.log(data.data))
         .catch(err => console.log(err))
@@ -32,14 +33,12 @@ const MyCollege = () => {
 
     
 
-
-
 // TODO : make reviews /
 
     return (
         <div className="min-h-screen">
             <p></p>
-            <div className="grid gap:4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {
                     clg?.map(clg => <div key={clg._id} className="card bg-base-100 shadow-xl">
                         <figure className="px-10 pt-10">

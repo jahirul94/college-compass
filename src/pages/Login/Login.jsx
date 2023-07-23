@@ -6,26 +6,26 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const [ error , setError] = useState("")
-    const {signIn} = useAuth();
+    const [error, setError] = useState("")
+    const { signIn } = useAuth();
     const navigate = useNavigate();
-    const { register, handleSubmit  , reset } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        signIn(data.email , data.password)
-        .then(result =>{
-            const loggedUser = result.user ;
-            Swal.fire(
-                'Done!',
-                'Your Account Login Successfully.',
-                'success'
-            )
-            setError('')
-            reset();
-            navigate("/")
-        })
-        .catch(err => {
-            setError(err.message);
-        })
+        signIn(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                Swal.fire(
+                    'Done!',
+                    'Your Account Login Successfully.',
+                    'success'
+                )
+                setError('')
+                reset();
+                navigate("/")
+            })
+            .catch(err => {
+                setError(err.message);
+            })
     };
 
 
@@ -49,16 +49,28 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" {...register("password")} placeholder="password" className="input input-bordered" required />
-                            <label className="label">
-                                <p> New at here ? <Link to="/register">Sign Up </Link></p>
-                            </label>
-                            <p className="text-red-600">{error}</p>
+                            <p className="text-red-600 my-2">{error}</p>
                         </div>
-                        <input className="btn btn-primary" type="submit" value="Login" />
+                        <input className="btn btn-outline" type="submit" value="Login" />
                     </form>
                     <SocialLogin></SocialLogin>
+                    <div className="ms-8 mb-4">
+                        <button onClick={() => window.my_modal_3.showModal()}><p className="text-red-600 underline">Forget Password</p></button>
+                        <p> New at here ? <Link to="/register">Sign Up </Link></p>
+                    </div>
                 </div>
             </div>
+            {/* modal start  */}
+            <dialog id="my_modal_3" className="modal">
+                <form method="dialog" className="modal-box">
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    <input type="email" name="email" id="" />
+                    <button className="btn btn-outline">Send</button>
+                </form>
+            </dialog>
+            {/* modal end  */}
+
+
         </div>
     );
 };
