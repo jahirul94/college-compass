@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useTitle from "../../Hooks/useTitle";
 
 const AdmissionForm = () => {
+    useTitle("Admission Form")
     const [colleges] = useCollege();
     const { user } = useAuth();
     // console.log(user);
@@ -32,7 +34,7 @@ const AdmissionForm = () => {
                     const imgURL = imageRes.data.display_url;
                     const { name, subject, email, phone, dateOfBirth, address } = data;
                     const newApplication = { name, subject, email, phone, image: imgURL, dateOfBirth, address, collegeName: findCollege?.collegeName, collegeId: findCollege?._id, }
-                    axios.post("http://localhost:5000/myCollege", newApplication)
+                    axios.post("https://college-compass-server.vercel.app/myCollege", newApplication)
                         .then(data => {
                             if (data.data.insertedId) {
                                 reset();
@@ -58,7 +60,7 @@ const AdmissionForm = () => {
 
     return (
         <div className="min-h-screen mt-20">
-            <p className="py-4 mb-8 underline underline-offset-8 text-2xl font-bold text-center">For Apply to Admit {`${findCollege?.collegeName}`} filup Following Form</p>
+            <p className="py-4 mb-8 underline underline-offset-8 text-2xl font-bold text-center">For Admit {`${findCollege?.collegeName}`} filup Following Form</p>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                     <div className="">

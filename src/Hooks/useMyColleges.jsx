@@ -5,7 +5,7 @@ import useAuth from "./useAuth";
 const useMyColleges = () => {
     const { user } = useAuth();
     const [myColleges, setMyColleges] = useState({});
-    const url = `http://localhost:5000/myCollege?email=${user?.email}`
+    const url = `https://college-compass-server.vercel.app/myCollege?email=${user?.email}`
     useEffect(() => {
         axios.get(url)
             .then(data => setMyColleges(data.data))

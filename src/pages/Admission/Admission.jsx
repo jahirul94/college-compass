@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import useCollege from "../../Hooks/useCollege";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useTitle from "../../Hooks/useTitle";
 
 const Admission = () => {
+    useTitle("Admission")
     const [colleges] = useCollege();
     const { user } = useAuth();
 
@@ -18,7 +20,7 @@ const Admission = () => {
     }
     return (
         <div className="min-h-screen">
-            <p className="text-center font-bold text-2xl mt-20 mb-8 underline underline-offset-4">Apply Your Favorite College</p>
+            <p className="text-center font-bold text-2xl mt-20 mb-8 underline underline-offset-4">Admit Your Favorite College</p>
             {
                 colleges?.map((clg, i) => <div className="p-4 my-4 border border-spacing-4" key={clg._id}>
                     <span className="text-lg font-semibold">{i + 1} </span>.

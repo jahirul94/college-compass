@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const useCollege = () => {
     const [colleges, setColleges] = useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/all-college')
+        fetch('https://college-compass-server.vercel.app/all-college')
         .then(res => res.json())
         .then(data => setColleges(data))
     },[])

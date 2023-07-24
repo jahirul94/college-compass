@@ -4,8 +4,10 @@ import useAuth from "../../Hooks/useAuth";
 import './MyCollege.css'
 import useCollege from "../../Hooks/useCollege";
 import useMyColleges from "../../Hooks/useMyColleges";
+import useTitle from "../../Hooks/useTitle";
 
 const MyCollege = () => {
+    useTitle("My College")
     const { user } = useAuth();
     const [colleges] = useCollege();
     const [review, setReview] = useState({});
@@ -19,15 +21,14 @@ const MyCollege = () => {
         const date = new Date();
         const { email, displayName, photoURL } = user;
         const newReview = { message: data, collegeId: review._id, collegeName: review.collegeName, email, displayName, photoURL, date }
-        axios.post('http://localhost:5000/reviews', newReview)
+        axios.post('https://college-compass-server.vercel.app/reviews', newReview)
             .then(data => console.log(data.data))
             .catch(err => console.log(err))
     }
 
     return (
         <div className="min-h-screen">
-            <p></p>
-            <div className="card lg:card-side bg-base-100 shadow-xl w-full">
+           { myColleges && <div className="card lg:card-side bg-base-100 shadow-xl w-full">
                 <figure><img src={clg?.collegeImage} alt="College Image" className="rounded-xl p-4 w-full h-96" /></figure>
                 <div className="card-body w-full lg:w-2/3">
                     <h2 className="text-3xl font-bold">{clg?.collegeName}</h2>
@@ -39,7 +40,7 @@ const MyCollege = () => {
                         <input onMouseEnter={() => setReview(clg)} type="submit" className="btn btn-outline" value="Send" />
                     </form>
                 </div>
-            </div>
+            </div>}
         </div>
     );
 };

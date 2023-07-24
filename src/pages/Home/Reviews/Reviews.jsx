@@ -5,7 +5,7 @@ const Reviews = () => {
     const [reviews , setReviews] = useState([]);
 
     useEffect(()=>{
-         axios.get('http://localhost:5000/reviews')
+         axios.get('https://college-compass-server.vercel.app/reviews')
          .then(data => setReviews(data.data))
     },[])
 

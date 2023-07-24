@@ -20,7 +20,7 @@ const Register = () => {
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
                         const saveUser = { name: data.name , email: data.email , image : data.photo }
-                        axios.post('http://localhost:5000/users' , saveUser)
+                        axios.post('https://college-compass-server.vercel.app/users' , saveUser)
                         .then(data => console.log(data.data))
                         .catch(err => console.log(err))
                         reset();

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import useCollege from "../../Hooks/useCollege";
+import useTitle from "../../Hooks/useTitle";
 
 const Colleges = () => {
+    useTitle("Colleges")
     const [colleges] = useCollege();
     return (
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

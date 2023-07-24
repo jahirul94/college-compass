@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import useMyColleges from "../../Hooks/useMyColleges";
 import useUser from "../../Hooks/useUser";
 import { FaEdit } from 'react-icons/fa';
+import useTitle from "../../Hooks/useTitle";
 
 const User = () => {
+    useTitle("My Profile")
     const displayUser = useUser();
     const myColleges = useMyColleges();
     return (
@@ -15,13 +17,13 @@ const User = () => {
                 <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2">
                     <h3 className="text-lg font-bold">Full Name : <span className="font-semibold text-md"> {displayUser?.name}</span></h3>
                     <h3 className="text-lg font-bold">Email : <span className="font-semibold text-md"> {displayUser?.email}</span></h3>
-                    <h3 className="text-lg font-bold">Address : <span className="font-semibold text-md"> {myColleges?.address}</span></h3>
-                    <h3 className="text-lg font-bold">Date Of Birth : <span className="font-semibold text-md"> {myColleges?.dateOfBirth}</span></h3>
-                    <h3 className="text-lg font-bold">College Name : <span className="font-semibold text-md"> {myColleges?.collegeName}</span></h3>
-                    <h3 className="text-lg font-bold">Subject : <span className="font-semibold text-md"> {myColleges?.subject}</span></h3>
+                    {myColleges && <h3 className="text-lg font-bold">College Name : <span className="font-semibold text-md"> {myColleges?.collegeName}</span></h3>}
+                    {myColleges && <h3 className="text-lg font-bold">Subject : <span className="font-semibold text-md"> {myColleges?.subject}</span></h3>}
+                    {myColleges && <h3 className="text-lg font-bold">Date Of Birth : <span className="font-semibold text-md"> {myColleges?.dateOfBirth}</span></h3>}
+                    {myColleges && <h3 className="text-lg font-bold">Address : <span className="font-semibold text-md"> {myColleges?.address}</span></h3>}
                 </div>
                 <div className="my-8 flex justify-center">
-                   <Link to="/userDetails"><button className="btn btn-outline lg:my-20 mx-4 w-1/2"><FaEdit></FaEdit> Edit Details</button></Link>
+                    <Link to="/userDetails" className="flex"><button className="btn btn-outline w-40 lg:my-20 mx-4"><FaEdit></FaEdit>Edit Details</button></Link>
                 </div>
             </div>
         </div>

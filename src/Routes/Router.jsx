@@ -11,6 +11,7 @@ import DisplayDetails from "../pages/Home/DisplayColleges/DisplayDetails";
 import PrivateRoutes from "./PrivateRoutes";
 import Error from "../pages/Error/Error";
 import User from "../pages/User/User";
+import EditUser from "../pages/User/EditUser";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
         element : <Register></Register>
       },
       {
-        path :'myCollege' , 
+        path :'myCollege' ,
         element : <MyCollege></MyCollege>
       },
       {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path : '/displayUser',
         element : <User></User>
+      },
+      {
+        path :"/userDetails",
+        element : <EditUser></EditUser>
       }
     ]
   },

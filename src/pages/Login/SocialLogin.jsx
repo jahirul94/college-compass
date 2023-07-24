@@ -1,11 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import { FaGoogle } from 'react-icons/fa';
+import { FaGitAlt, FaGithubAlt, FaGoogle } from 'react-icons/fa';
 import axios from "axios";
 
 const SocialLogin = () => {
-    const { googleSignIn } = useAuth();
+    const { googleSignIn, githubSignIn } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
@@ -14,10 +14,10 @@ const SocialLogin = () => {
         googleSignIn()
             .then(result => {
                 const loggedUser = result.user;
-                const saveUser = { name: loggedUser.displayName , email: loggedUser.email , image : loggedUser.photoURL }
-                        axios.post('http://localhost:5000/users' , saveUser)
-                        .then(data => console.log(data.data))
-                        .catch(err => console.log(err))
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email, image: loggedUser.photoURL }
+                axios.post('https://college-compass-server.vercel.app/users', saveUser)
+                    .then(data => console.log(data.data))
+                    .catch(err => console.log(err))
                 Swal.fire(
                     'Done!',
                     'Your Account Login Successfully.',
@@ -30,10 +30,21 @@ const SocialLogin = () => {
             })
     }
 
+    const handleLoginWithGithub = () => {
+        githubSignIn()
+            .then(result => {
+                const loggedUser = result.user;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
 
     return (
-        <div className='flex justify-center -mt-4 mb-5'>
-            <button onClick={handleLoginWithGoogle} className='flex btn btn-outline w-[85%]'>Login With <FaGoogle className='text-xl'></FaGoogle></button>
+        <div className='-mt-4 mb-5 space-x-3 mx-auto lg:flex justify-center'>
+            <button onClick={handleLoginWithGoogle} className='flex btn btn-outline mb-2'>Login With <FaGoogle className='text-xl'></FaGoogle></button>
+            <button onClick={handleLoginWithGithub} className='flex btn btn-outline'>Login With <FaGithubAlt className='text-xl'></FaGithubAlt></button>
         </div>
     );
 };
