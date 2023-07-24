@@ -4,8 +4,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useTitle from "../../Hooks/useTitle";
 
 const Login = () => {
+    useTitle("Login");
     const [error, setError] = useState("")
     const { signIn, resetPass } = useAuth();
     const ref = useRef();

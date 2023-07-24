@@ -1,15 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import useCollege from "../../../Hooks/useCollege";
 import { Link } from "react-router-dom";
+import { RotatingLines } from "react-loader-spinner";
 const DisplayColleges = () => {
     const ref = useRef();
     const [displayColleges, setDisplayColleges] = useState([]);
-    const [colleges] = useCollege();
+    const [colleges, loading] = useCollege();
 
- 
     useEffect(() => {
         setDisplayColleges(colleges.slice(0, 3))
     }, [colleges])
+
+    if (loading) {
+        return <div className="min-h-screen flex justify-center items-center"><RotatingLines
+            strokeColor="gray"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="96"
+            visible={true}
+        /></div>
+    }
 
     const handleSearch = () => {
         const name = ref.current.value;
@@ -29,7 +39,7 @@ const DisplayColleges = () => {
             <div>
                 <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {
-                        displayColleges?.map(clg => <div key={clg._id} className="card bg-base-100 shadow-xl">
+                        displayColleges?.map(clg => <div data-aos="zoom-in" data-aos-duration="600" key={clg._id} className="card bg-base-100 shadow-xl">
                             <figure><img src={clg.collegeImage} alt="College image" className="w-full h-80" /></figure>
                             <div className="card-body">
                                 <h2 className="text-2xl font-bold">{clg.collegeName}</h2>
@@ -45,11 +55,11 @@ const DisplayColleges = () => {
                                         <span className="text-md font-semibold">Research History : </span><span className="text-sm">{clg.researchWorks}</span>
                                     </div>
                                     <div>
-                                    <span className="text-md font-semibold">Sports : </span>
-                                    {
-                                        clg.sportsFacilities?.map((sp , i) =><span key={i} className="text-sm">{sp}, </span>)
-                                    }
-                                </div>
+                                        <span className="text-md font-semibold">Sports : </span>
+                                        {
+                                            clg.sportsFacilities?.map((sp, i) => <span key={i} className="text-sm">{sp}, </span>)
+                                        }
+                                    </div>
                                 </div>
                                 <div className="mt-2">
                                     <Link to={`/details/${clg._id}`}><button className="w-full btn btn-outline">View Details</button></Link>

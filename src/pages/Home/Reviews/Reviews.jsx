@@ -16,7 +16,7 @@ const Reviews = () => {
             </div>
             <div className="my-10 grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                {
-                reviews?.map(review =>  <div key={review._id} className="text-center border p-4 shadow-md">
+                reviews?.map(review =>  <div data-aos="fade-in" data-aos-duration="600" key={review._id} className="text-center border p-4 shadow-md">
                 <div className="flex justify-center mb-10">
                     <img src={review.photoURL} className="w-20 h-20 rounded-full" alt="user photo" />
                 </div>

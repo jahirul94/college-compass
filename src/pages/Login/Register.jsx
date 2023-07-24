@@ -5,8 +5,10 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useTitle from "../../Hooks/useTitle";
 
 const Register = () => {
+    useTitle("Register");
     const { createUser, updateUserProfile } = useAuth();
     const [error, setError] = useState("")
     const navigate = useNavigate();
